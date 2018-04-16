@@ -15,41 +15,37 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.B);
-		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.D);
+		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D);
+		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
 		EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
 		IRChecker checkerThread = new IRChecker(irSensor);
 		checkerThread.start();
-		Drive dr = new Drive(leftMotor,rightMotor, shootMotor);
-		
-		while(!Button.ESCAPE.isDown()) {
+		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
+
+		while (!Button.ESCAPE.isDown()) {
 			int command = checkerThread.getCommand();
-			if(command == 1) {
+			if (command == 1) {
 				LCD.drawString("Forward", 0, 4);
 				dr.driveForward();
 				Delay.msDelay(2000);
 				LCD.clear();
-			}
-			else if(command == 2) {
+			} else if (command == 2) {
 				LCD.drawString("Backward", 0, 4);
 				dr.driveBackward();
 				Delay.msDelay(2000);
 				LCD.clear();
-			}
-			else if(command == 3) {
+			} else if (command == 3) {
 				dr.spinLeft();
 				LCD.drawString("SpinLeft", 0, 4);
 				Delay.msDelay(2000);
 				LCD.clear();
-			}
-			else if(command == 4) {
+			} else if (command == 4) {
 				dr.spinRight();
 				LCD.drawString("SpinRight", 0, 4);
 				Delay.msDelay(2000);
 				LCD.clear();
-			}
-			else if(command == 0) {
+			} else if (command == 0) {
 				dr.shoot();
 			}
 		}

@@ -19,9 +19,9 @@ public class IRChecker extends Thread {
 		} catch (Exception e) {
 			return;
 		}
-		
+
 	}
-	
+
 	public int getCommand() {
 		return remoteCommand;
 	}
