@@ -3,6 +3,7 @@ package pack;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
@@ -15,11 +16,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.B);
+		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.D);
 		EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
 		IRChecker checkerThread = new IRChecker(irSensor);
 		checkerThread.start();
-		Drive dr = new Drive(leftMotor,rightMotor);
+		Drive dr = new Drive(leftMotor,rightMotor, shootMotor);
 		
 		while(!Button.ESCAPE.isDown()) {
 			int command = checkerThread.getCommand();
@@ -46,6 +48,9 @@ public class Main {
 				LCD.drawString("SpinRight", 0, 4);
 				Delay.msDelay(2000);
 				LCD.clear();
+			}
+			else if(command == 0) {
+				dr.shoot();
 			}
 		}
 		leftMotor.close();

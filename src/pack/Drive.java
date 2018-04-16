@@ -5,10 +5,12 @@ import lejos.robotics.RegulatedMotor;
 public class Drive {
 	RegulatedMotor mA;
 	RegulatedMotor mD;
+	RegulatedMotor top;
 	
-	public Drive(RegulatedMotor mA, RegulatedMotor mD) {
+	public Drive(RegulatedMotor mA, RegulatedMotor mD, RegulatedMotor top) {
 		this.mA = mA;
 		this.mD = mD;
+		this.top = top;
 		mA.synchronizeWith(new RegulatedMotor[] { mD });
 	}
 	
@@ -38,6 +40,10 @@ public class Drive {
 	public void spinRight() {
 		mA.stop();
 		mD.forward();
+	}
+	
+	public void shoot() {
+		top.forward();
 	}
 	
 	public void stop() {
