@@ -14,6 +14,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		/*
 		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D);
 		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
@@ -21,8 +22,10 @@ public class Test {
 
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		checkerThread.start();
-		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
-
+		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);*/
+		MusicPlayer player = new MusicPlayer();
+		player.PlaySong("Ukko");
+		/*
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();			
 			LCD.drawString("Command :" + beacon, 0, 4);
@@ -63,6 +66,7 @@ public class Test {
 		rightMotor.close();
 		irSensorLeft.close();
 		checkerThread.interrupt();
+		*/
 	}
 
 }
