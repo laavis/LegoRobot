@@ -25,12 +25,19 @@ public class Main {
 		
 		checkerThread.start();
 		while (!Button.ESCAPE.isDown()) {
-			int beacon = checkerThread.getCommand();			
-			LCD.drawString("Command :" + beacon, 0, 4);
+			int beacon = checkerThread.getCommand();		
+			int channel = checkerThread.getChannel();
+			LCD.drawString("Command: " + beacon, 0, 4);
+			LCD.drawString("Channel: " + channel, 0, 5);
 			switch (beacon) {
 			case 1:
+				if(channel == 2) {
+					dr.spinLeft();
+				}
+				else if(channel == 3) {
+					dr.shoot();
+				}
 				isPressed = false;
-				dr.spinLeft();
 				break;
 			case 2:
 				isPressed = false;
@@ -62,8 +69,9 @@ public class Main {
 				break;
 			case 9:
 				if(!isPressed) {
+					checkerThread.nextChannel();
 					isPressed = true;
-					dr.shoot();
+					//dr.shoot();
 				}
 				break;
 
