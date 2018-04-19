@@ -80,7 +80,11 @@ public class Drive {
 	}
 
 	public void shoot() {
-		top.rotate(480);
+		top.rotate(1080);
+	}
+	
+	public void shootReverse() {
+		top.rotate(-1080);
 	}
 
 	public void stop() {

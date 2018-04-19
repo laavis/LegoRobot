@@ -9,6 +9,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
+import lejos.hardware.Sound;
 
 public class Main {
 
@@ -20,6 +21,7 @@ public class Main {
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
+		boolean isPressed = false;
 		
 		checkerThread.start();
 		while (!Button.ESCAPE.isDown()) {
@@ -27,34 +29,47 @@ public class Main {
 			LCD.drawString("Command :" + beacon, 0, 4);
 			switch (beacon) {
 			case 1:
+				isPressed = false;
 				dr.spinLeft();
 				break;
 			case 2:
+				isPressed = false;
 				dr.spinLeftBack();
 				break;
 			case 3:
+				isPressed = false;
 				dr.spinRight();
 				break;
 			case 4:
+				isPressed = false;
 				dr.spinRightBack();
 				break;
 			case 5:
+				isPressed = false;
 				dr.driveForward();
 				break;
 			case 6:
+				isPressed = false;
 				dr.turnRight();
 				break;
 			case 7:
+				isPressed = false;
 				dr.turnLeft();
 				break;
 			case 8:
+				isPressed = false;
 				dr.driveBackward();
 				break;
 			case 9:
-				dr.shoot();
+				if(!isPressed) {
+					isPressed = true;
+					dr.shoot();
+				}
 				break;
+
 			default:
 				dr.stop();
+				isPressed = false;
 				break;
 			}			
 			
