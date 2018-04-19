@@ -24,65 +24,67 @@ public class Main {
 		MusicPlayer player = new MusicPlayer();
 		player.PlaySong("Ukko");
 		boolean isPressed = false;
-		
+
 		checkerThread.start();
 		while (!Button.ESCAPE.isDown()) {
-			int beacon = checkerThread.getCommand();		
+			int beacon = checkerThread.getCommand();
 			int channel = checkerThread.getChannel();
 			LCD.drawString("Command: " + beacon, 0, 4);
 			LCD.drawString("Channel: " + channel, 0, 5);
-			switch (beacon) {
-			case 1:
-				if(channel == 2) {
-					dr.spinLeft();
-				}
-				else if(channel == 3) {
-					dr.shoot();
-				}
-				isPressed = false;
-				break;
-			case 2:
-				isPressed = false;
-				dr.spinLeftBack();
-				break;
-			case 3:
-				isPressed = false;
-				dr.spinRight();
-				break;
-			case 4:
-				isPressed = false;
-				dr.spinRightBack();
-				break;
-			case 5:
-				isPressed = false;
-				dr.driveForward();
-				break;
-			case 6:
-				isPressed = false;
-				dr.turnRight();
-				break;
-			case 7:
-				isPressed = false;
-				dr.turnLeft();
-				break;
-			case 8:
-				isPressed = false;
-				dr.driveBackward();
-				break;
-			case 9:
-				if(!isPressed) {
-					checkerThread.nextChannel();
+			if (!isPressed) {
+				switch (beacon) {
+				case 1:
+					if (channel == 2) {
+						dr.spinLeft();
+					} else if (channel == 3) {
+						dr.shoot();
+					}
+					isPressed = false;
+					break;
+				case 2:
+					isPressed = false;
+					dr.spinLeftBack();
+					break;
+				case 3:
+					isPressed = false;
+					dr.spinRight();
+					break;
+				case 4:
+					isPressed = false;
+					dr.spinRightBack();
+					break;
+				case 5:
+					isPressed = false;
+					dr.driveForward();
+					break;
+				case 6:
+					isPressed = false;
+					dr.turnRight();
+					break;
+				case 7:
+					isPressed = false;
+					dr.turnLeft();
+					break;
+				case 8:
+					isPressed = false;
+					dr.driveBackward();
+					break;
+				case 9:
 					isPressed = true;
-					//dr.shoot();
-				}
-				break;
+					while(beacon==9) {
+						
+					}
+					break;
 
-			default:
-				dr.stop();
-				isPressed = false;
-				break;
-			}			
-			
+				default:
+					dr.stop();
+					isPressed = false;
+					break;
+				}
+			}else {
+				checkerThread.changeChannel();
+			}
+
 		}
 		leftMotor.close();
 		rightMotor.close();

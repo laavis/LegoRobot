@@ -22,12 +22,8 @@ public class IRChecker extends Thread {
 		}
 	}
 	
-	public void nextChannel() {
-		if(channel == 3) {
-			channel = 0;
-		}else {
-			channel++;
-		}
+	public void changeChannel() {
+			
 	}
 
 	public int getCommand() {
