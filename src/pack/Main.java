@@ -10,7 +10,7 @@ import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
-public class Test {
+public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
