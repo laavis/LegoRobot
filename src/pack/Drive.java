@@ -1,56 +1,70 @@
 package pack;
 
 import lejos.robotics.RegulatedMotor;
+import lejos.utility.Delay;
 
 public class Drive {
-	RegulatedMotor mA;
-	RegulatedMotor mD;
+	RegulatedMotor rightMotor;
+	RegulatedMotor leftMotor;
 	RegulatedMotor top;
 
-	public Drive(RegulatedMotor mA, RegulatedMotor mD, RegulatedMotor top) {
-		this.mA = mA;
-		this.mD = mD;
+	public Drive(RegulatedMotor rightMotor, RegulatedMotor leftMotor, RegulatedMotor top) {
+		this.rightMotor = rightMotor;
+		this.leftMotor = leftMotor;
 		this.top = top;
-		mA.synchronizeWith(new RegulatedMotor[] { mD });
+		this.top.stop();
+		rightMotor.synchronizeWith(new RegulatedMotor[] { leftMotor });
 	}
 
 	public void driveForward() {
-		this.mA.setSpeed(900);
-		this.mD.setSpeed(900);
-		mA.startSynchronization();
-		mA.forward();
-		mD.forward();
-		mA.endSynchronization();
+		this.rightMotor.setSpeed(900);
+		this.leftMotor.setSpeed(900);
+		rightMotor.startSynchronization();
+		rightMotor.forward();
+		leftMotor.forward();
+		Delay.msDelay(250);
+		rightMotor.stop();
+		leftMotor.stop();
+		rightMotor.endSynchronization();
 	}
 
 	public void driveBackward() {
-		this.mA.setSpeed(900);
-		this.mD.setSpeed(900);
-		mA.startSynchronization();
-		mA.backward();
-		mD.backward();
-		mA.endSynchronization();
+		this.rightMotor.setSpeed(900);
+		this.leftMotor.setSpeed(900);
+		rightMotor.startSynchronization();
+		rightMotor.backward();
+		leftMotor.backward();
+		Delay.msDelay(250);
+		rightMotor.stop();
+		leftMotor.stop();
+		rightMotor.endSynchronization();
 	}
 
 	public void spinLeft() {
-		mD.stop();
-		mA.forward();
+		rightMotor.rotate(360);
 	}
 
 	public void spinRight() {
-		mA.stop();
-		mD.forward();
+		leftMotor.rotate(360);
+	}
+	
+	public void spinLeftBack() {
+		rightMotor.rotate(-360);
+	}
+	
+	public void spinRightBack() {
+		leftMotor.rotate(-360);
 	}
 
 	public void shoot() {
-		top.forward();
+		top.rotate(720);
 	}
 
 	public void stop() {
-		mA.startSynchronization();
-		mA.stop();
-		mD.stop();
-		mA.endSynchronization();
+		rightMotor.startSynchronization();
+		rightMotor.stop();
+		leftMotor.stop();
+		rightMotor.endSynchronization();
 	}
 
 }

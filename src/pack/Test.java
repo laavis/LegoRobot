@@ -17,41 +17,51 @@ public class Test {
 		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D);
 		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
-		EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
+		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 
-		IRChecker checkerThread = new IRChecker(irSensor);
+		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		checkerThread.start();
 		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
 
 		while (!Button.ESCAPE.isDown()) {
-			int command = checkerThread.getCommand();
-			if (command == 1) {
-				LCD.drawString("Forward", 0, 4);
-				dr.driveForward();
-				Delay.msDelay(2000);
-				LCD.clear();
-			} else if (command == 2) {
-				LCD.drawString("Backward", 0, 4);
-				dr.driveBackward();
-				Delay.msDelay(2000);
-				LCD.clear();
-			} else if (command == 3) {
+			int beacon = checkerThread.getCommand();			
+			LCD.drawString("Command :" + beacon, 0, 4);
+			if(beacon == 1) {
 				dr.spinLeft();
-				LCD.drawString("SpinLeft", 0, 4);
-				Delay.msDelay(2000);
-				LCD.clear();
-			} else if (command == 4) {
-				dr.spinRight();
-				LCD.drawString("SpinRight", 0, 4);
-				Delay.msDelay(2000);
-				LCD.clear();
-			} else if (command == 0) {
-				dr.shoot();
 			}
+			else if(beacon == 2) {
+				dr.spinLeftBack();
+			}
+			else if(beacon == 3) {
+				dr.spinRight();
+			}
+			else if(beacon == 4) {
+				dr.spinRightBack();
+			}
+			else if (beacon == 5) {
+				dr.driveForward();
+			}
+			else if(beacon == 6) {
+				dr.spinLeft();
+				dr.spinRightBack();
+			}
+			else if (beacon == 7) {
+				dr.spinLeftBack();
+				dr.spinRight();
+			}
+			else if (beacon == 8) {
+				dr.driveBackward();
+			}
+			else {
+				dr.stop();
+			}
+			
+			
+			
 		}
 		leftMotor.close();
 		rightMotor.close();
-		irSensor.close();
+		irSensorLeft.close();
 		checkerThread.interrupt();
 	}
 
