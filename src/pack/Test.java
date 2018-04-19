@@ -26,37 +26,37 @@ public class Test {
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();			
 			LCD.drawString("Command :" + beacon, 0, 4);
-			if(beacon == 1) {
+			switch (beacon) {
+			case 1:
 				dr.spinLeft();
-			}
-			else if(beacon == 2) {
+				break;
+			case 2:
 				dr.spinLeftBack();
-			}
-			else if(beacon == 3) {
+				break;
+			case 3:
 				dr.spinRight();
-			}
-			else if(beacon == 4) {
+				break;
+			case 4:
 				dr.spinRightBack();
-			}
-			else if (beacon == 5) {
+				break;
+			case 5:
 				dr.driveForward();
-			}
-			else if(beacon == 6) {
+				break;
+			case 6:
 				dr.spinLeft();
 				dr.spinRightBack();
-			}
-			else if (beacon == 7) {
+				break;
+			case 7:
 				dr.spinLeftBack();
 				dr.spinRight();
-			}
-			else if (beacon == 8) {
+				break;
+			case 8:
 				dr.driveBackward();
-			}
-			else {
+				break;
+			default:
 				dr.stop();
-			}
-			
-			
+				break;
+			}			
 			
 		}
 		leftMotor.close();
