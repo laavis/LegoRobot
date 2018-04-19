@@ -18,11 +18,10 @@ public class Test {
 		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
-
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
-		checkerThread.start();
 		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
-
+		
+		checkerThread.start();
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();			
 			LCD.drawString("Command :" + beacon, 0, 4);
