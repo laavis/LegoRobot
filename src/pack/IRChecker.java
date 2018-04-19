@@ -13,7 +13,7 @@ public class IRChecker extends Thread {
 	public void run() {
 		try {
 			while (true) {
-				Thread.sleep(50);
+				Thread.sleep(250);
 				remoteCommand = infraredSensorLeft.getRemoteCommand(2);
 			}
 		} catch (Exception e) {
