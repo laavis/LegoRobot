@@ -1,35 +1,43 @@
 package pack;
 
-import lejos.hardware.port.SensorPort;
+import lejos.hardware.ev3.LocalEV3;
+import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.SampleProvider;
-import lejos.utility.Delay;
+import lejos.robotics.filter.MeanFilter;
+
 
 public class DistanceIR extends Thread {
-	private EV3IRSensor infraredSensorRight;
-
-	// private static EV3IRSensor ir1 = new EV3IRSensor(SensorPort.S4);
-
-	public DistanceIR(EV3IRSensor sensorRight) {
-		this.infraredSensorRight = sensorRight;
+	private SampleProvider average;
+	private SampleProvider sampler;
+	private EV3IRSensor sensor;
+	private boolean stop = false;
+	private int distance;
+	
+	public DistanceIR() {
+		Port port = LocalEV3.get().getPort("S1");
+		sensor = new EV3IRSensor(port);
+		sampler = sensor.getMode("Distance");		
+		this.setDaemon(true);
 	}
-
-	private static int HALF_SECOND = 500;
-
-	public int getDistance() {
-
-		final SampleProvider sp = infraredSensorRight.getDistanceMode();
-		int distanceValue = 0;
-
-		// Control loop
-
-		float[] sample = new float[sp.sampleSize()];
-		sp.fetchSample(sample, 0);
-		distanceValue = (int) sample[0];
-
-		Delay.msDelay(HALF_SECOND);
-		return distanceValue;
-
+	
+	public synchronized int distance() { 
+		return distance; 
 	}
-
+	
+	public void stopSensor() {
+		stop = true;
+	}
+	
+	public void run() {
+		float[] sample = new float[sampler.sampleSize()];
+		
+		while(!stop) {
+			sampler.fetchSample(sample, 0);
+			average = new MeanFilter(sampler, 5);
+			average.fetchSample(sample, 0);
+			distance = (int)sample[0];
+		}
+		sensor.close();
+	}
 }

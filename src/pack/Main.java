@@ -14,23 +14,34 @@ import lejos.hardware.Sound;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.D);
 		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
+		
+		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
-		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
+		DistanceIR distance = new DistanceIR();
 		MusicPlayer player = new MusicPlayer();
-		player.PlaySong("Ukko");
+		
 		boolean isPressed = false;
-
+		
+		// Play a funky tune
+		//player.PlaySong("Ukko");
+		// Initialize sensors
 		checkerThread.start();
+		distance.start();
+		
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();
 			int channel = checkerThread.getChannel();
+
 			LCD.drawString("Command: " + beacon, 0, 4);
 			LCD.drawString("Channel: " + channel, 0, 5);
+			LCD.drawString("Distance: " + distance.distance(), 0, 6);
+			LCD.refresh();
+			LCD.clear();
+			
 			if (!isPressed) {
 				switch (beacon) {
 				case 1:
@@ -89,6 +100,7 @@ public class Main {
 		leftMotor.close();
 		rightMotor.close();
 		irSensorLeft.close();
+		distance.stopSensor();
 		checkerThread.interrupt();
 	}
 
