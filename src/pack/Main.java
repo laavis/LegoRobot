@@ -21,6 +21,8 @@ public class Main {
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		Drive dr = new Drive(leftMotor, rightMotor, shootMotor);
+		MusicPlayer player = new MusicPlayer();
+		player.PlaySong("Ukko");
 		boolean isPressed = false;
 		
 		checkerThread.start();
