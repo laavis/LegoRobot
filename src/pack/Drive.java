@@ -48,6 +48,23 @@ public class Drive {
 		leftMotor.rotate(360);
 	}
 	
+	public void turnRight() {
+		rightMotor.startSynchronization();
+		rightMotor.forward();
+		leftMotor.backward();
+		Delay.msDelay(250);
+		this.stop();
+		rightMotor.endSynchronization();
+	}
+	public void turnLeft() {
+		rightMotor.startSynchronization();
+		rightMotor.backward();
+		leftMotor.forward();
+		Delay.msDelay(250);
+		this.stop();
+		rightMotor.endSynchronization();
+	}
+	
 	public void spinLeftBack() {
 		rightMotor.rotate(-360);
 	}

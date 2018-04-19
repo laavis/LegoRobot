@@ -14,8 +14,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A);
-		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D);
+		RegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.D);
+		RegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.A);
 		RegulatedMotor shootMotor = new EV3MediumRegulatedMotor(MotorPort.B);
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 
@@ -43,15 +43,16 @@ public class Test {
 				dr.driveForward();
 				break;
 			case 6:
-				dr.spinLeft();
-				dr.spinRightBack();
+				dr.turnRight();
 				break;
 			case 7:
-				dr.spinLeftBack();
-				dr.spinRight();
+				dr.turnLeft();
 				break;
 			case 8:
 				dr.driveBackward();
+				break;
+			case 9:
+				dr.shoot();
 				break;
 			default:
 				dr.stop();
