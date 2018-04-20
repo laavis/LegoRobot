@@ -1,6 +1,7 @@
 package pack;
 
 import lejos.hardware.Button;
+import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
@@ -49,6 +50,7 @@ public class RemoteControl {
 					} else if (channel == 3) {
 						dr.shoot();
 					} else if (channel == 1) {
+						Sound.setVolume(50);
 						player.PlaySong("Ukko");
 					}
 					isPressed = false;
@@ -60,7 +62,8 @@ public class RemoteControl {
 						
 					} else if (channel == 1)
 					{
-						
+						Sound.setVolume(50);
+						player.PlaySong("Shelter");
 					}
 					isPressed = false;
 					break;
@@ -68,6 +71,8 @@ public class RemoteControl {
 					if (channel == 2) {
 						dr.spinRight();
 					} else if (channel == 3) {
+						
+					} else if (channel == 1) {
 						
 					}
 					isPressed = false;
