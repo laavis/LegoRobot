@@ -22,8 +22,9 @@ public class Main {
 		EV3IRSensor irSensorLeft = new EV3IRSensor(SensorPort.S4);
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		DistanceIR distance = new DistanceIR();
+		Autopilot tesla = new Autopilot(dr, distance);
 		
-		RemoteControl rC = new RemoteControl(irSensorLeft, checkerThread, dr, distance);
+		RemoteControl rC = new RemoteControl(irSensorLeft, checkerThread, dr, distance, tesla);
 		rC.Control();
 		
 		leftMotor.close();
