@@ -22,8 +22,8 @@ public class IRChecker extends Thread {
 		}
 	}
 	
-	public void changeChannel() {
-			
+	public void changeChannel(int channel) {
+			this.channel = channel;
 	}
 
 	public int getCommand() {

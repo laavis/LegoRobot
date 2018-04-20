@@ -39,6 +39,7 @@ public class Main {
 			LCD.drawString("Command: " + beacon, 0, 4);
 			LCD.drawString("Channel: " + channel, 0, 5);
 			LCD.drawString("Distance: " + distance.distance(), 0, 6);
+			LCD.drawString("isPressed: " + isPressed, 0, 7);
 			LCD.refresh();
 			LCD.clear();
 			
@@ -83,7 +84,7 @@ public class Main {
 				case 9:
 					isPressed = true;
 					while(beacon==9) {
-						
+						beacon = checkerThread.getCommand();
 					}
 					break;
 
@@ -93,7 +94,16 @@ public class Main {
 					break;
 				}
 			}else {
-				checkerThread.changeChannel();
+				while (true) {
+					LCD.drawString("Choose Channel", 0, 0);
+					beacon = checkerThread.getCommand();
+					if(beacon > 0 && beacon < 5) {
+						checkerThread.changeChannel(beacon -1);
+						break;
+					}
+				}
+				beacon = 0;
+				isPressed = false;
 			}
 
 		}
@@ -101,6 +111,7 @@ public class Main {
 		rightMotor.close();
 		irSensorLeft.close();
 		distance.stopSensor();
+		distance.interrupt();
 		checkerThread.interrupt();
 	}
 
