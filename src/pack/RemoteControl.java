@@ -10,19 +10,37 @@ import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
 
 public class RemoteControl {
+	EV3IRSensor irSensorLeft;
+	IRChecker checkerThread;
+	Drive dr;
+	DistanceIR distance;
 	MusicPlayer player = new MusicPlayer();
 	
-	public void Control (RegulatedMotor leftMotor, RegulatedMotor rightMotor, RegulatedMotor shootMotor, EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr)
+	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance) {
+		this.irSensorLeft = irSensorLeft;
+		this.checkerThread = checkerThread;
+		this.dr = dr;
+		this.distance = distance;
+	}
+	
+	public void Control ()
 	{
 		boolean isPressed = false;
 		checkerThread.start();
+		distance.start();
 		
-		//CHANNEL 2 = DRIVE MODE, CHANNEL 3 == ???, CHANNEL 4 == MUSIC MODE
+		//CHANNEL 2 = DRIVE MODE, CHANNEL 3 == ???, CHANNEL 1 == MUSIC MODE
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();
 			int channel = checkerThread.getChannel();
+			
 			LCD.drawString("Command: " + beacon, 0, 4);
 			LCD.drawString("Channel: " + channel, 0, 5);
+			LCD.drawString("Distance: " + distance.distance(), 0, 6);
+			LCD.drawString("isPressed: " + isPressed, 0, 7);
+			LCD.refresh();
+			LCD.clear();
+			
 			if (!isPressed) {
 				switch (beacon) {
 				case 1:
@@ -30,7 +48,7 @@ public class RemoteControl {
 						dr.spinLeft();
 					} else if (channel == 3) {
 						dr.shoot();
-					} else if (channel == 4) {
+					} else if (channel == 1) {
 						player.PlaySong("Ukko");
 					}
 					isPressed = false;
@@ -40,7 +58,7 @@ public class RemoteControl {
 						dr.spinLeftBack();
 					} else if (channel == 3) {
 						
-					} else if (channel == 4)
+					} else if (channel == 1)
 					{
 						
 					}
@@ -97,7 +115,7 @@ public class RemoteControl {
 				case 9:
 					isPressed = true;
 					while(beacon==9) {
-						
+						beacon = checkerThread.getCommand();
 					}
 					break;
 
@@ -107,13 +125,21 @@ public class RemoteControl {
 					break;
 				}
 			}else {
-				checkerThread.changeChannel();
+				while (true) {
+					LCD.drawString("Choose Channel", 0, 0);
+					beacon = checkerThread.getCommand();
+					if(beacon > 0 && beacon < 5) {
+						checkerThread.changeChannel(beacon -1);
+						break;
+					}
+				}
+				beacon = 0;
+				isPressed = false;
 			}
 
 		}
-		leftMotor.close();
-		rightMotor.close();
 		irSensorLeft.close();
+		distance.interrupt();
 		checkerThread.interrupt();	
 	}
 }
