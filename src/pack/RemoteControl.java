@@ -9,7 +9,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
 
-public class Controller {
+public class RemoteControl {
 	MusicPlayer player = new MusicPlayer();
 	
 	public void Control (RegulatedMotor leftMotor, RegulatedMotor rightMotor, RegulatedMotor shootMotor, EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr)
