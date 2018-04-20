@@ -64,19 +64,17 @@ public class RemoteControl {
 					if (channel == 2) {
 						dr.spinLeftBack();
 					} else if (channel == 3) {
-<<<<<<< HEAD
 						
 					} else if (channel == 1)
 					{
 						Sound.setVolume(50);
 						player.PlaySong("Shelter");
-=======
+
 
 					} else if (channel == 1) {
 
 					} else if (channel == 0) {
 						autopilot.interrupt();
->>>>>>> 611b5d9bb5b297a4a12e2e02f84863b4a2ef3d1e
 					}
 					isPressed = false;
 					break;
@@ -84,13 +82,9 @@ public class RemoteControl {
 					if (channel == 2) {
 						dr.spinRight();
 					} else if (channel == 3) {
-<<<<<<< HEAD
 						
 					} else if (channel == 1) {
 						
-=======
-
->>>>>>> 611b5d9bb5b297a4a12e2e02f84863b4a2ef3d1e
 					}
 					isPressed = false;
 					break;
