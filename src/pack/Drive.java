@@ -78,6 +78,11 @@ public class Drive {
 	public void spinRightBack() {
 		leftMotor.backward();
 	}
+	
+	public void turnAround() {
+		rightMotor.rotate(180);
+		leftMotor.rotate(-180);
+	}
 
 	public void shoot() {
 		top.rotate(1080);
