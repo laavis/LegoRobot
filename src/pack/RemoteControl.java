@@ -14,13 +14,15 @@ public class RemoteControl {
 	IRChecker checkerThread;
 	Drive dr;
 	DistanceIR distance;
+	Autopilot autopilot;
 	MusicPlayer player = new MusicPlayer();
 	
-	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance) {
+	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance, Autopilot autopilot) {
 		this.irSensorLeft = irSensorLeft;
 		this.checkerThread = checkerThread;
 		this.dr = dr;
 		this.distance = distance;
+		this.autopilot = autopilot;
 	}
 	
 	public void Control ()
@@ -50,6 +52,8 @@ public class RemoteControl {
 						dr.shoot();
 					} else if (channel == 1) {
 						player.PlaySong("Ukko");
+					} else if (channel == 0) {
+						autopilot.run();
 					}
 					isPressed = false;
 					break;
@@ -114,7 +118,7 @@ public class RemoteControl {
 					break;
 				case 9:
 					isPressed = true;
-					while(beacon==9) {
+					while(beacon == 9) {
 						beacon = checkerThread.getCommand();
 					}
 					break;
@@ -140,6 +144,7 @@ public class RemoteControl {
 		}
 		irSensorLeft.close();
 		distance.interrupt();
+		autopilot.interrupt();
 		checkerThread.interrupt();	
 	}
 }
