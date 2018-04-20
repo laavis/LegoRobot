@@ -1,11 +1,13 @@
 package pack;
 
 import lejos.hardware.lcd.LCD;
+import lejos.hardware.Button;
 
 public class Autopilot extends Thread{
 	
 	private Drive dr;
 	private DistanceIR distance;
+	private boolean stop = false;
 
 	public Autopilot (Drive dr, DistanceIR distance) {
 		this.dr = dr;
@@ -14,9 +16,9 @@ public class Autopilot extends Thread{
 	
 	public void run() {
 		try {
-			while (true) {
+			while (!Button.ESCAPE.isDown()) {
 				LCD.drawString("AUTOPILOT", 0, 0);
-				Thread.sleep(250);
+				Thread.sleep(25);
 				dr.driveForward();
 				detectObstacle();
 			}
@@ -30,4 +32,9 @@ public class Autopilot extends Thread{
 			dr.turnAround();
 		}
 	}
+	
+	public void stopAutopilot() {
+		stop = !stop;
+	}
+	
 }
