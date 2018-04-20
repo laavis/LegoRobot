@@ -8,6 +8,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
+import lejos.utility.Delay;
 
 public class RemoteControl {
 	EV3IRSensor irSensorLeft;
@@ -134,6 +135,7 @@ public class RemoteControl {
 					}
 				}
 				beacon = 0;
+				Delay.msDelay(250);
 				isPressed = false;
 			}
 
