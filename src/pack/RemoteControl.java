@@ -146,7 +146,7 @@ public class RemoteControl {
 					isPressed = false;
 					break;
 				case 9:
-					isPressed = true;
+					isPressed = false;
 					while (beacon == 9) {
 						beacon = checkerThread.getCommand();
 					}
