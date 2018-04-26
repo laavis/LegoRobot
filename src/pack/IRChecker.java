@@ -1,6 +1,6 @@
 package pack;
 
-//import lejos.hardware.lcd.LCD;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.EV3IRSensor;
 
 public class IRChecker extends Thread {
@@ -25,6 +25,7 @@ public class IRChecker extends Thread {
 	}
 
 	public void changeChannel() {
+		LCD.drawString("channel Changeing", 0, 3);
 		while (!chCh) {
 			if (infraredSensorLeft.getRemoteCommand(0) == 9) {
 				channel = 0;
@@ -43,6 +44,9 @@ public class IRChecker extends Thread {
 		while (infraredSensorLeft.getRemoteCommand(channel) == 9) {
 
 		}
+		LCD.clear(3);
+		LCD.drawString("channel switched", 0, 3);
+		LCD.clear(3);
 	}
 
 	public int getCommand() {

@@ -150,6 +150,7 @@ public class RemoteControl {
 					while (beacon == 9) {
 						beacon = checkerThread.getCommand();
 					}
+					checkerThread.changeChannel();
 					break;
 
 				default:
@@ -157,20 +158,7 @@ public class RemoteControl {
 					isPressed = false;
 					break;
 				}
-			} else {
-				while (true) {
-					LCD.drawString("Choose Channel", 0, 0);
-					beacon = checkerThread.getCommand();
-					if (beacon > 0 && beacon < 5) {
-						checkerThread.changeChannel();
-						break;
-					}
-				}
-				beacon = 0;
-				Delay.msDelay(250);
-				isPressed = false;
-			}
-
+			} 
 		}
 		irSensorLeft.close();
 		distance.interrupt();
