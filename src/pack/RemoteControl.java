@@ -162,7 +162,7 @@ public class RemoteControl {
 					LCD.drawString("Choose Channel", 0, 0);
 					beacon = checkerThread.getCommand();
 					if (beacon > 0 && beacon < 5) {
-						checkerThread.changeChannel(beacon - 1);
+						checkerThread.changeChannel();
 						break;
 					}
 				}
