@@ -33,13 +33,15 @@ public class DistanceIR extends Thread {
 	// mean filtering raw distance data 
 	public void run() {
 		float[] sample = new float[sampler.sampleSize()];
-		
+	try {
 		while(!stop) {
+			Thread.sleep(250);
 			sampler.fetchSample(sample, 0);
 			average = new MeanFilter(sampler, 5);
 			average.fetchSample(sample, 0);
 			distance = (int)sample[0];
 		}
+	} catch (Exception e) { return; } 
 		sensor.close();
 	}
 }
