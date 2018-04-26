@@ -1,7 +1,6 @@
 package pack;
 
 import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
 import lejos.hardware.Button;
 
 public class Autopilot extends Thread {
@@ -20,24 +19,22 @@ public class Autopilot extends Thread {
 			while (!Button.ESCAPE.isDown()) {
 				LCD.drawString("AUTOPILOT", 0, 0);
 				Thread.sleep(25);
-				dr.spin();
+				dr.driveForward();
 				detectObstacle();
 			}
 		} catch (Exception e) {
 			return;
 		}
 	}
-
+	// polls distance sensor for information and shoots or turns around accordingly
 	private void detectObstacle() {
-		if (distance.distance() <= 30) {
-			dr.turnAround();
-			dr.driveForward();
-			Delay.msDelay(500);
+		if (distance.distance() <= 40) {
+			dr.turnLeft90();
 		}
-		else if (distance.distance() <= 100) {
+		/*else if (distance.distance() <= 100) {
 			dr.stop();
 			dr.shoot();
-		}
+		}*/
 	}
 
 	public void stopAutopilot() {

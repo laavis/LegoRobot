@@ -1,6 +1,5 @@
 package pack;
 
-import lejos.hardware.lcd.LCD;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
@@ -71,23 +70,35 @@ public class Drive {
 		leftMotor.stop(true);
 		rightMotor.stop(true);
 	}
-	
+	// turns left motor in reverse direction
 	public void spinLeftBack() {
 		rightMotor.backward();
 	}
-	
+	// turns right motor in reverse direction
 	public void spinRightBack() {
 		leftMotor.backward();
 	}
 	// turn around
 	public void turnAround() {
 		rightMotor.startSynchronization();
-		rightMotor.forward();
-		leftMotor.backward();
+		rightMotor.backward();
+		leftMotor.forward();
 		rightMotor.endSynchronization();
-		Delay.msDelay(1500);
+		Delay.msDelay(2000);
+		leftMotor.stop(true);
+		rightMotor.stop(true);
 	}
 	
+	public void turnLeft90() {
+		rightMotor.startSynchronization();
+		rightMotor.backward();
+		leftMotor.forward();
+		rightMotor.endSynchronization();
+		Delay.msDelay(750);
+		leftMotor.stop(true);
+		rightMotor.stop(true);
+	}
+	// continuously turns in place
 	public void spin() {
 		rightMotor.startSynchronization();
 		rightMotor.forward();
@@ -97,10 +108,21 @@ public class Drive {
 		leftMotor.stop(true);
 		rightMotor.stop(true);
 	}
+	// drives backward for 50cm
+	public void goBackward() {
+		rightMotor.startSynchronization();
+		rightMotor.backward();
+		leftMotor.backward();
+		rightMotor.endSynchronization();
+		Delay.msDelay(750);
+		rightMotor.stop(true);
+		leftMotor.stop(true);
+	}
+	// shoots once
 	public void shoot() {
 		top.rotate(1080);
 	}
-	
+	// shoots in reverse
 	public void shootReverse() {
 		top.rotate(-1080);
 	}
