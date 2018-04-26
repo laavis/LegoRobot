@@ -25,6 +25,7 @@ public class IRChecker extends Thread {
 	}
 
 	public void changeChannel() {
+		chCh = false;
 		LCD.drawString("channel Changeing", 0, 3);
 		while (!chCh) {
 			if (infraredSensorLeft.getRemoteCommand(0) == 9) {

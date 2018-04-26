@@ -34,7 +34,7 @@ public class Autopilot extends Thread {
 	}
 	// polls distance sensor for information and shoots or turns around accordingly
 	private void detectObstacle() {
-		if (distance.distance() <= 40 && shootCount > 0) {
+		if (distance.distance() <= 40) {
 			dr.turnLeft90();
 			LCD.drawString("DETECT", 0, 2);
 			shootCount = 0;
