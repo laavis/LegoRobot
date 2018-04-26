@@ -86,6 +86,16 @@ public class Drive {
 		rightMotor.endSynchronization();
 		Delay.msDelay(1500);
 	}
+	
+	public void spin() {
+		rightMotor.startSynchronization();
+		rightMotor.forward();
+		leftMotor.backward();
+		rightMotor.endSynchronization();
+		Delay.msDelay(50);
+		leftMotor.stop(true);
+		rightMotor.stop(true);
+	}
 
 	public void shoot() {
 		top.rotate(1080);

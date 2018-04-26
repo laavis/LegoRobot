@@ -64,7 +64,7 @@ public class RemoteControl {
 					if (channel == 2) {
 						dr.spinLeftBack();
 					} else if (channel == 3) {
-						
+						dr.turnAround();
 					} else if (channel == 1)
 					{
 						Sound.setVolume(50);
