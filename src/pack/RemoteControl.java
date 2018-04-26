@@ -19,8 +19,7 @@ public class RemoteControl {
 	Autopilot autopilot;
 	MusicPlayer player = new MusicPlayer();
 
-	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance,
-			Autopilot autopilot) {
+	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance, Autopilot autopilot) {
 		this.irSensorLeft = irSensorLeft;
 		this.checkerThread = checkerThread;
 		this.dr = dr;
@@ -37,7 +36,7 @@ public class RemoteControl {
 		while (!Button.ESCAPE.isDown()) {
 			int beacon = checkerThread.getCommand();
 			int channel = checkerThread.getChannel();
-
+			// display info on the LCD screen
 			LCD.drawString("Command: " + beacon, 0, 4);
 			LCD.drawString("Channel: " + channel, 0, 5);
 			LCD.drawString("Distance: " + distance.distance(), 0, 6);
@@ -47,84 +46,102 @@ public class RemoteControl {
 
 			if (!isPressed) {
 				switch (beacon) {
+				// execute code depending the current channel
 				case 1:
-					if (channel == 2) {
-						dr.spinLeft();
-					} else if (channel == 3) {
-						dr.shoot();
+					if (channel == 0) {
+						autopilot.run();
 					} else if (channel == 1) {
 						Sound.setVolume(50);
 						player.PlaySong("Ukko");
-					} else if (channel == 0) {
-						autopilot.run();
+					} else if (channel == 2) {
+						dr.spinLeft();
+					} else if (channel == 3) {
+						dr.shoot();
 					}
 					isPressed = false;
 					break;
 				case 2:
-					if (channel == 2) {
-						dr.spinLeftBack();
-					} else if (channel == 3) {
-						dr.turnAround();
-					} else if (channel == 1)
-					{
+					if (channel == 0) { 			
+						autopilot.interrupt();			
+					} else if (channel == 1) {		
 						Sound.setVolume(50);
 						player.PlaySong("Shelter");
-
-
-					} else if (channel == 1) {
-
-					} else if (channel == 0) {
-						autopilot.interrupt();
-					}
+					} else if (channel == 2) {
+						dr.spinLeftBack();
+					} else if (channel == 3) {		
+						// do something
+					} 
 					isPressed = false;
 					break;
 				case 3:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.spinRight();
 					} else if (channel == 3) {
-						
-					} else if (channel == 1) {
-						
+						// do something
 					}
 					isPressed = false;
 					break;
 				case 4:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.spinRightBack();
 					} else if (channel == 3) {
-
+						// do something
 					}
 					isPressed = false;
 					break;
 				case 5:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.driveForward();
 					} else if (channel == 3) {
-
+						// do something
 					}
 					isPressed = false;
 					break;
 				case 6:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.turnRight();
 					} else if (channel == 3) {
-
+						// do something
 					}
 					isPressed = false;
 					break;
 				case 7:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.turnLeft();
 					} else if (channel == 3) {
-
+						// do something
 					}
 					isPressed = false;
 					break;
 				case 8:
-					if (channel == 2) {
+					if (channel == 0) {
+						// do something
+					} else if (channel == 1) {
+						// do something
+					} else if (channel == 2) {
 						dr.driveBackward();
 					} else if (channel == 3) {
-
+						// do something
 					}
 					isPressed = false;
 					break;
