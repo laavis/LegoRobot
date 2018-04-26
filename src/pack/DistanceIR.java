@@ -14,13 +14,14 @@ public class DistanceIR extends Thread {
 	private boolean stop = false;
 	private int distance;
 	
+	// create DistanceIR object
 	public DistanceIR() {
 		Port port = LocalEV3.get().getPort("S1");
 		sensor = new EV3IRSensor(port);
 		sampler = sensor.getMode("Distance");		
 		this.setDaemon(true);
 	}
-	
+	// return distance
 	public synchronized int distance() { 
 		return distance; 
 	}
@@ -28,7 +29,8 @@ public class DistanceIR extends Thread {
 	public void stopSensor() {
 		stop = true;
 	}
-	
+	// this runs until stopSensor() is called
+	// mean filtering raw distance data 
 	public void run() {
 		float[] sample = new float[sampler.sampleSize()];
 		
