@@ -94,7 +94,7 @@ public class Drive {
 		rightMotor.backward();
 		leftMotor.forward();
 		rightMotor.endSynchronization();
-		Delay.msDelay(500);
+		Delay.msDelay(750);
 		leftMotor.stop(true);
 		rightMotor.stop(true);
 	}

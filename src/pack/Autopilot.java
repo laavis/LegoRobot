@@ -28,13 +28,13 @@ public class Autopilot extends Thread {
 	}
 	// polls distance sensor for information and shoots or turns around accordingly
 	private void detectObstacle() {
-		if (distance.distance() <= 30) {
+		if (distance.distance() <= 40) {
 			dr.turnLeft90();
 		}
-		else if (distance.distance() <= 100) {
+		/*else if (distance.distance() <= 100) {
 			dr.stop();
 			dr.shoot();
-		}
+		}*/
 	}
 
 	public void stopAutopilot() {
