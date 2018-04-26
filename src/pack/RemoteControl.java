@@ -3,12 +3,7 @@ package pack;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.motor.EV3MediumRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3IRSensor;
-import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class RemoteControl {
@@ -69,7 +64,7 @@ public class RemoteControl {
 					} else if (channel == 2) {
 						dr.spinLeftBack();
 					} else if (channel == 3) {		
-						// do something
+						dr.shootReverse();
 					} 
 					isPressed = false;
 					break;
