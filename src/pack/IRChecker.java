@@ -2,6 +2,7 @@ package pack;
 
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.EV3IRSensor;
+import lejos.utility.Delay;
 
 public class IRChecker extends Thread {
 	private EV3IRSensor infraredSensorLeft;
@@ -42,9 +43,11 @@ public class IRChecker extends Thread {
 				chCh = true;
 			}
 		}
+		Delay.msDelay(250);
 		while (infraredSensorLeft.getRemoteCommand(channel) == 9) {
 
 		}
+		Delay.msDelay(250);
 		LCD.clear(3);
 		LCD.drawString("channel switched", 0, 3);
 		LCD.clear(3);
