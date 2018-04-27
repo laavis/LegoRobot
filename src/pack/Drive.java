@@ -21,8 +21,8 @@ public class Drive {
 	// both motors driving forward
 	public void driveForward() {
 		rightMotor.startSynchronization();
-		rightMotor.forward();
-		leftMotor.forward();
+		rightMotor.backward();
+		leftMotor.backward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(50);
 		rightMotor.stop(true);
@@ -31,8 +31,8 @@ public class Drive {
 	// both motors driving backwards
 	public void driveBackward() {
 		rightMotor.startSynchronization();
-		rightMotor.backward();
-		leftMotor.backward();
+		rightMotor.forward();
+		leftMotor.forward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(50);
 		rightMotor.stop(true);
@@ -40,21 +40,21 @@ public class Drive {
 	}
 	// spin left
 	public void spinLeft() {
-		rightMotor.forward();
+		rightMotor.backward();
 		Delay.msDelay(50);
 		rightMotor.stop(true);
 	}
 	// spin right
 	public void spinRight() {
-		leftMotor.forward();
+		leftMotor.backward();
 		Delay.msDelay(50);
 		leftMotor.stop(true);
 	}
 	// turn right
 	public void turnRight() {
 		rightMotor.startSynchronization();
-		rightMotor.forward();
-		leftMotor.backward();
+		rightMotor.backward();
+		leftMotor.forward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(50);
 		leftMotor.stop(true);
@@ -63,8 +63,8 @@ public class Drive {
 	// turn left
 	public void turnLeft() {
 		rightMotor.startSynchronization();
-		rightMotor.backward();
-		leftMotor.forward();
+		rightMotor.forward();
+		leftMotor.backward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(50);
 		leftMotor.stop(true);
@@ -72,17 +72,17 @@ public class Drive {
 	}
 	// turns left motor in reverse direction
 	public void spinLeftBack() {
-		rightMotor.backward();
+		rightMotor.forward();
 	}
 	// turns right motor in reverse direction
 	public void spinRightBack() {
-		leftMotor.backward();
+		leftMotor.forward();
 	}
 	// turn around
 	public void turnAround() {
 		rightMotor.startSynchronization();
-		rightMotor.backward();
-		leftMotor.forward();
+		rightMotor.forward();
+		leftMotor.backward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(2000);
 		leftMotor.stop(true);
@@ -91,8 +91,8 @@ public class Drive {
 	
 	public void turnLeft90() {
 		rightMotor.startSynchronization();
-		rightMotor.backward();
-		leftMotor.forward();
+		rightMotor.forward();
+		leftMotor.backward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(750);
 		leftMotor.stop(true);
@@ -101,8 +101,8 @@ public class Drive {
 	// continuously turns in place
 	public void spin() {
 		rightMotor.startSynchronization();
-		rightMotor.forward();
-		leftMotor.backward();
+		rightMotor.backward();
+		leftMotor.forward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(50);
 		leftMotor.stop(true);
@@ -111,8 +111,8 @@ public class Drive {
 	// drives backward for 50cm
 	public void goBackward() {
 		rightMotor.startSynchronization();
-		rightMotor.backward();
-		leftMotor.backward();
+		rightMotor.forward();
+		leftMotor.forward();
 		rightMotor.endSynchronization();
 		Delay.msDelay(750);
 		rightMotor.stop(true);
