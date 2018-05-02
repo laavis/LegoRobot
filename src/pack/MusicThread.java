@@ -11,6 +11,7 @@ public class MusicThread extends Thread {
 	
 	public void run() {
 		try {
+			//SELECT SONG + PRESS ENTER + PRESS 1 == ???? V PROFIT
 			while (!Button.ENTER.isDown()) {					
 				if (song != null) {
 					Sound.setVolume(10);
@@ -95,7 +96,7 @@ public class MusicThread extends Thread {
 		}
 	}
 	
-	
+	//Credit for song notes goes to Alex
 	public void PlaySong(String song) {
 		if (song.equals("Ukko")) {
 			//PHASE 1			

@@ -12,7 +12,6 @@ public class RemoteControl {
 	Drive dr;
 	DistanceIR distance;
 	Autopilot autopilot;
-	//MusicPlayer player = new MusicPlayer();
 	MusicThread musicThread = new MusicThread();
 
 	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance, Autopilot autopilot) {
