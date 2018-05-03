@@ -6,8 +6,8 @@ import lejos.hardware.lcd.LCD;
 
 public class MusicThread extends Thread {
 	
-	public String song = null;
-	public final static int[] PIANO = new int[]{4, 25, 500, 7000, 5};
+	private String song = null;
+	private final static int[] PIANO = new int[]{4, 25, 500, 7000, 5};
 	
 	public void run() {
 		try {
@@ -26,7 +26,7 @@ public class MusicThread extends Thread {
 	}
 		
 	
-	public void PlayNote(char note, int howManyTimes, double forHowLong, int scale) {
+	private void PlayNote(char note, int howManyTimes, double forHowLong, int scale) {
 		
 		int frequency = 0;
 		
