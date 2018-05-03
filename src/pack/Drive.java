@@ -4,9 +4,9 @@ import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class Drive {
-	RegulatedMotor rightMotor;
-	RegulatedMotor leftMotor;
-	RegulatedMotor top;
+	private RegulatedMotor rightMotor;
+	private RegulatedMotor leftMotor;
+	private RegulatedMotor top;
 	private int rotationRight;
 	private int maxSpeed = 750;
 
