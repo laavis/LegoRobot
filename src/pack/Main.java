@@ -23,6 +23,8 @@ public class Main {
 		DistanceIR distance = new DistanceIR();
 		Autopilot tesla = new Autopilot(dr, distance, touchSensorLeft, touchSensorRight);
 		
+		checkerThread.Init();
+		
 		RemoteControl rC = new RemoteControl(irSensorLeft, checkerThread, dr, distance, tesla);
 		rC.Control();
 		
