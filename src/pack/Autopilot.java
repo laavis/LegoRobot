@@ -23,7 +23,8 @@ public class Autopilot extends Thread {
 		this.sampleLeft = new float[touchSensorLeft.sampleSize()];
 		this.sampleRight = new float[touchSensorRight.sampleSize()];
 	}
-
+	
+	// drives forward until it detects an obstacle
 	public void run() {
 		try {
 			while (!Button.ESCAPE.isDown()) {
@@ -31,7 +32,6 @@ public class Autopilot extends Thread {
 				LCD.drawString("Distance: " + distance.distance(), 0, 6);
 				LCD.drawString("Shoot count: " + shootCount, 0, 5);
 				LCD.refresh();
-				//LCD.clear();
 				Thread.sleep(25);
 				dr.driveForward();
 				detectObstacle();
@@ -41,7 +41,9 @@ public class Autopilot extends Thread {
 			return;
 		}
 	}
-	// polls distance sensor for information and shoots or turns around accordingly
+	
+	// polls distance sensor for information and shoots or turns around accordingly.
+	// if either touch sensor is pressed back up and turn around
 	private void detectObstacle() {
 		touchSensorLeft.fetchSample(sampleLeft, 0);
 		touchSensorRight.fetchSample(sampleRight, 0);
@@ -61,13 +63,14 @@ public class Autopilot extends Thread {
 		LCD.clear(2);
 	}
 	
+	// stops robot & shoots
 	private void kill() {
 		dr.stop();
 		dr.shoot();
 		LCD.clear(3);
 	}
-
-
+	
+	// stops autopilot
 	public void stopAutopilot() {
 		stop = !stop;
 	}
