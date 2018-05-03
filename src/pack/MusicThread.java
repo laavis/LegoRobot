@@ -96,7 +96,7 @@ public class MusicThread extends Thread {
 		}
 	}
 	
-	//Credit for song notes goes to Alex
+	/** Credit for song notes goes to Alex */
 	public void PlaySong(String song) {
 		if (song.equals("Ukko")) {
 			//PHASE 1			
