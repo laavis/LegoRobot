@@ -12,8 +12,8 @@ public class Autopilot extends Thread {
 	private EV3TouchSensor touchSensorRight;
 	private boolean stop = false;
 	private int shootCount = 0;
-    private float[] sampleLeft;
-    private float[] sampleRight;
+	private float[] sampleLeft;
+	private float[] sampleRight;
 
 	public Autopilot(Drive dr, DistanceIR distance, EV3TouchSensor touchSensorLeft, EV3TouchSensor touchSensorRight) {
 		this.dr = dr;
@@ -23,35 +23,39 @@ public class Autopilot extends Thread {
 		this.sampleLeft = new float[touchSensorLeft.sampleSize()];
 		this.sampleRight = new float[touchSensorRight.sampleSize()];
 	}
-	
+
 	// drives forward until it detects an obstacle
 	public void run() {
 		try {
 			while (!Button.ESCAPE.isDown()) {
 				LCD.drawString("AUTOPILOT", 0, 0);
-				LCD.drawString("Distance: " + distance.distance(), 0, 6);
-				LCD.drawString("Shoot count: " + shootCount, 0, 5);
+				LCD.drawInt(dr.getRotation(), 0, 1);
+				// LCD.drawString("Distance: " + distance.distance(), 0, 6);
+				// LCD.drawString("Shoot count: " + shootCount, 0, 5);
 				LCD.refresh();
 				Thread.sleep(25);
 				dr.driveForward();
-				detectObstacle();
-				
+				if (dr.getRotation() > 2500) {
+					dr.stop();
+					dr.turnLeft90();
+				} else {
+					detectObstacle();
+				}
 			}
 		} catch (Exception e) {
 			return;
 		}
 	}
-	
+
 	// polls distance sensor for information and shoots or turns around accordingly.
 	// if either touch sensor is pressed back up and turn around
 	private void detectObstacle() {
 		touchSensorLeft.fetchSample(sampleLeft, 0);
 		touchSensorRight.fetchSample(sampleRight, 0);
-		if(sampleLeft[0] == 1 || sampleRight[0] == 1) {
+		if (sampleLeft[0] == 1 || sampleRight[0] == 1) {
 			dr.goBackward();
 			dr.turnAround();
-		}
-		else if (distance.distance() <= 40) {
+		} else if (distance.distance() <= 40) {
 			dr.turnLeft90();
 			LCD.drawString("DETECT", 0, 2);
 			shootCount = 0;
@@ -62,14 +66,14 @@ public class Autopilot extends Thread {
 		}
 		LCD.clear(2);
 	}
-	
+
 	// stops robot & shoots
 	private void kill() {
 		dr.stop();
 		dr.shoot();
 		LCD.clear(3);
 	}
-	
+
 	// stops autopilot
 	public void stopAutopilot() {
 		stop = !stop;
