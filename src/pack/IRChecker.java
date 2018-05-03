@@ -25,7 +25,8 @@ public class IRChecker extends Thread {
 		}
 	}
 
-	// channel changer
+	/** channel changer
+	 */
 	public void changeChannel() {
 		chCh = false;
 		LCD.drawString("channel Changeing", 0, 3);
