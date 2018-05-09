@@ -1,3 +1,10 @@
+/**
+* Class Drive is responsible for controlling the 3 motors on the robot.
+* Contains methods for most functions that the motors can do.
+* Majority of methods are intended to be called repeatedly for continuous movement.
+* @author Niklas Kiuru
+* @since 9-4-2018
+*/
 package pack;
 
 import lejos.robotics.RegulatedMotor;
@@ -10,7 +17,7 @@ public class Drive {
 	private int rotationRight;
 	private int maxSpeed = 750;
 
-	// create Drive object
+	/** create Drive object */
 	public Drive(RegulatedMotor rightMotor, RegulatedMotor leftMotor, RegulatedMotor top) {
 		this.rightMotor = rightMotor;
 		this.leftMotor = leftMotor;
@@ -21,7 +28,7 @@ public class Drive {
 		rightMotor.synchronizeWith(new RegulatedMotor[] { leftMotor });
 	}
 
-	// both motors driving forward
+	/** both motors driving forward */
 	public void driveForward() {
 		rightMotor.startSynchronization();
 		rightMotor.forward();
@@ -37,7 +44,7 @@ public class Drive {
 		return rotationRight;
 	}
 
-	// both motors driving backwards
+	/** both motors driving backwards */
 	public void driveBackward() {
 		rightMotor.startSynchronization();
 		rightMotor.backward();
@@ -48,21 +55,21 @@ public class Drive {
 		leftMotor.stop(true);
 	}
 
-	// spin left
+	/** spin left motor */
 	public void spinLeft() {
 		rightMotor.forward();
 		Delay.msDelay(50);
 		rightMotor.stop(true);
 	}
 
-	// spin right
+	/** spin right motor */
 	public void spinRight() {
 		leftMotor.forward();
 		Delay.msDelay(50);
 		leftMotor.stop(true);
 	}
 
-	// turn right
+	/** turn right using both motors*/
 	public void turnRight() {
 		rightMotor.startSynchronization();
 		rightMotor.forward();
@@ -73,7 +80,7 @@ public class Drive {
 		rightMotor.stop(true);
 	}
 
-	// turn left
+	/** turn left using both motors*/
 	public void turnLeft() {
 		rightMotor.startSynchronization();
 		rightMotor.backward();
@@ -84,17 +91,17 @@ public class Drive {
 		rightMotor.stop(true);
 	}
 
-	// turns left motor in reverse direction
+	/** turns left motor in reverse direction */
 	public void spinLeftBack() {
 		rightMotor.backward();
 	}
 
-	// turns right motor in reverse direction
+	/** turns right motor in reverse direction */
 	public void spinRightBack() {
 		leftMotor.backward();
 	}
 
-	// turn around
+	/** turn around */
 	public void turnAround() {
 		rightMotor.startSynchronization();
 		rightMotor.backward();
@@ -105,7 +112,7 @@ public class Drive {
 		rightMotor.stop(true);
 	}
 
-	// turns left 90 degrees
+	/** turns left 90 degrees */
 	public void turnLeft90() {
 		rightMotor.startSynchronization();
 		rightMotor.backward();
@@ -117,7 +124,7 @@ public class Drive {
 		rightMotor.resetTachoCount();
 	}
 
-	// continuously turns in place
+	/** continuously turns in place */
 	public void spin() {
 		rightMotor.startSynchronization();
 		rightMotor.forward();
@@ -128,7 +135,7 @@ public class Drive {
 		rightMotor.stop(true);
 	}
 
-	// drives backward for 50cm
+	/** drives backward for 50cm */
 	public void goBackward() {
 		rightMotor.startSynchronization();
 		rightMotor.backward();
@@ -139,17 +146,17 @@ public class Drive {
 		leftMotor.stop(true);
 	}
 
-	// shoots once
+	/** shoots once */
 	public void shoot() {
 		top.rotate(1080);
 	}
 
-	// shoots in reverse
+	/** shoots in reverse */
 	public void shootReverse() {
 		top.rotate(-1080);
 	}
 
-	// stop the motors
+	/** stop the motors */
 	public void stop() {
 		rightMotor.startSynchronization();
 		rightMotor.stop(true);
