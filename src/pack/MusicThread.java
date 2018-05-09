@@ -18,7 +18,9 @@ public class MusicThread extends Thread {
 	
 	//Instrument for playing tunes. Adjust values in array to fine tune sound
 	private final static int[] PIANO = new int[]{4, 25, 500, 7000, 5};
-	
+	/**
+	 * Thread run method which plays the selected song
+	 * */
 	public void run() {
 		try {
 			//SELECT SONG + PRESS ENTER + PRESS 1 == ???? V PROFIT
@@ -35,7 +37,12 @@ public class MusicThread extends Thread {
 		
 	}
 		
-	//Expands on the premade method PlayNote.
+	/**Expands on the premade method PlayNote.
+	 * @param note Note to play
+	 * @param howManyTimes How many times to play the note
+	 * @param forHowLong How long to play the note
+	 * @param scale Scale of the note
+	 * */
 	private void PlayNote(char note, int howManyTimes, double forHowLong, int scale) {
 		
 		int frequency = 0;
@@ -110,7 +117,10 @@ public class MusicThread extends Thread {
 		}
 	}
 	
-	/** Credit for song notes goes to Alex */
+	/** Credit for song notes goes to Alex.
+	 * Plays a song based on the name of the parameter. 
+	 * @param song Song name 
+	 * */
 	public void PlaySong(String song) {
 		if (song.equals("Ukko")) {
 			//PHASE 1			
@@ -232,7 +242,10 @@ public class MusicThread extends Thread {
 		}
 	}
 	
-	
+	/**
+	 * Sets the current song
+	 * @param song The song to play
+	 * */
 	public void setSong(String song) {
 		this.song = song;
 	}
