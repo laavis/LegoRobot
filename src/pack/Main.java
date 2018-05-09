@@ -1,7 +1,7 @@
 /**
 * Main class contains main function.
 * Method is responsible for initializing and handing over to remote control.
-* @author Alex Mäkinen
+* @author Alex Makinen
 * @since 9-4-2018
 */
 

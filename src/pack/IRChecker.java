@@ -1,7 +1,7 @@
 /**
 * Class IRChecker keeps track of the channel and is responsible for channel switching and command receivement.
 * Contains methods for command getting and channel changing.
-* @author Alex Mäkinen
+* @author Alex Makinen
 * @since 9-4-2018
 */
 
@@ -17,7 +17,8 @@ public class IRChecker extends Thread {
 	private int channel = 2;
 	private boolean chCh = false;
 
-	/** Constructor: takes the sensor from main class */
+	/** Constructor: takes the sensor from main class 
+	 * @param sensorLeft left sensor used to receive commands*/
 	public IRChecker(EV3IRSensor sensorLeft) {
 		this.infraredSensorLeft = sensorLeft;
 	}
@@ -60,12 +61,14 @@ public class IRChecker extends Thread {
 		LCD.clear(3);
 	}
 
-	/** returns command integer */
+	/** returns command integer 
+	 * @return int Command id*/
 	public int getCommand() {
 		return remoteCommand;
 	}
 
-	/** returns the current channel in use */
+	/** returns the current channel in use 
+	 * @return int current channel*/
 	public int getChannel() {
 		return channel;
 	}
