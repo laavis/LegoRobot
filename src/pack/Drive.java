@@ -17,7 +17,11 @@ public class Drive {
 	private int rotationRight;
 	private int maxSpeed = 750;
 
-	/** create Drive object */
+	/** create Drive object 
+	 * @param rightMotor This is the right motor of the robot
+	 * @param leftMotor This is the left motor of the robot
+	 * @param top This is the small motor on the top of the robot used for shooting.
+	 * */
 	public Drive(RegulatedMotor rightMotor, RegulatedMotor leftMotor, RegulatedMotor top) {
 		this.rightMotor = rightMotor;
 		this.leftMotor = leftMotor;
