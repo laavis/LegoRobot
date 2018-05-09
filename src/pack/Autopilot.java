@@ -87,8 +87,8 @@ public class Autopilot extends Thread {
 		dr.shoot();
 		LCD.clear(3);
 	}
-
-	/** stops autopilot*/
+	
+	/** stops autopilot */
 	public void stopAutopilot() {
 		stop = !stop;
 	}

@@ -22,9 +22,8 @@ public class DistanceIR extends Thread {
 	private int distance;
 
 	
-	/**
-	 * create DistanceIR object
-	 **/
+
+	/** create DistanceIR object */
 	public DistanceIR() {
 		Port port = LocalEV3.get().getPort("S1");
 		sensor = new EV3IRSensor(port);
@@ -39,10 +38,9 @@ public class DistanceIR extends Thread {
 	public void stopSensor() {
 		stop = true;
 	}
-	
+
 	/** this runs until stopSensor() is called
-	* mean filtering raw distance data
-	*/ 
+	 * mean filtering raw distance data */
 	public void run() {
 		float[] sample = new float[sampler.sampleSize()];
 	try {
