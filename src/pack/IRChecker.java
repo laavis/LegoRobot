@@ -1,3 +1,10 @@
+/**
+* Class IRChecker keeps track of the channel and is responsible for channel switching and command receivement.
+* Contains methods for command getting and channel changing.
+* @author Alex Mäkinen
+* @since 9-4-2018
+*/
+
 package pack;
 
 import lejos.hardware.lcd.LCD;
@@ -9,11 +16,13 @@ public class IRChecker extends Thread {
 	private int remoteCommand;
 	private int channel = 2;
 	private boolean chCh = false;
-	/** Constructor: takes the sensor from main class*/
+
+	/** Constructor: takes the sensor from main class */
 	public IRChecker(EV3IRSensor sensorLeft) {
 		this.infraredSensorLeft = sensorLeft;
 	}
-	/** calls getRemoteCommand every 250ms*/
+
+	/** calls getRemoteCommand every 250ms */
 	public void run() {
 		try {
 			while (true) {
@@ -26,6 +35,7 @@ public class IRChecker extends Thread {
 	}
 
 	/** channel changer */
+
 	public void changeChannel() {
 		chCh = false;
 		LCD.drawString("channel Changeing", 0, 3);
@@ -49,11 +59,13 @@ public class IRChecker extends Thread {
 		LCD.drawString("channel switched", 0, 3);
 		LCD.clear(3);
 	}
-	/** returns command integer*/
+
+	/** returns command integer */
 	public int getCommand() {
 		return remoteCommand;
 	}
-	/** returns the current channel in use*/
+
+	/** returns the current channel in use */
 	public int getChannel() {
 		return channel;
 	}
