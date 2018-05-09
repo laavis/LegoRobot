@@ -42,7 +42,10 @@ public class Drive {
 		rightMotor.stop(true);
 		leftMotor.stop(true);
 	}
-
+	/**
+	 * Returns the right motor rotation amount.
+	 * @return int rotation amount.
+	 * */
 	public int getRotation() {
 		rotationRight = rightMotor.getTachoCount();
 		return rotationRight;

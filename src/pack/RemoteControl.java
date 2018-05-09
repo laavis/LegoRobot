@@ -1,3 +1,10 @@
+/**
+* <h1> RemoteControl <h1>
+* This class contains the main loop of the program.
+* Takes two integers from IRChecker and based on those sends commands to other classes.
+* @author  Niklas Kiuru
+* @since   16-4-2018 
+*/
 package pack;
 
 import lejos.hardware.Button;
@@ -13,7 +20,14 @@ public class RemoteControl {
 	private DistanceIR distance;
 	private Autopilot autopilot;
 	private MusicThread musicThread = new MusicThread();
-
+	/**
+	 * Constructor method
+	 * @param irSensorLeft left IR sensor responsible for distance measurements.
+	 * @param checkerThread IR sensor for receiving commands from beacon.
+	 * @param dr Drive class used to give commands to it.
+	 * @param distance Distance class
+	 * @param autopilot autopilot class that is called by the user
+	 * */
 	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance, Autopilot autopilot) {
 		this.irSensorLeft = irSensorLeft;
 		this.checkerThread = checkerThread;
