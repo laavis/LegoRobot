@@ -7,12 +7,12 @@ import lejos.hardware.sensor.EV3IRSensor;
 import lejos.utility.Delay;
 
 public class RemoteControl {
-	EV3IRSensor irSensorLeft;
-	IRChecker checkerThread;
-	Drive dr;
-	DistanceIR distance;
-	Autopilot autopilot;
-	MusicThread musicThread = new MusicThread();
+	private EV3IRSensor irSensorLeft;
+	private IRChecker checkerThread;
+	private Drive dr;
+	private DistanceIR distance;
+	private Autopilot autopilot;
+	private MusicThread musicThread = new MusicThread();
 
 	public RemoteControl(EV3IRSensor irSensorLeft, IRChecker checkerThread, Drive dr, DistanceIR distance, Autopilot autopilot) {
 		this.irSensorLeft = irSensorLeft;
@@ -21,7 +21,7 @@ public class RemoteControl {
 		this.distance = distance;
 		this.autopilot = autopilot;
 	}
-
+	/**	Listens to IR and does the corresponding command*/
 	public void Control() {
 		boolean isPressed = false;
 		checkerThread.start();
