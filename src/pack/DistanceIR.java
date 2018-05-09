@@ -1,3 +1,10 @@
+/**
+* Measures the distance and returns it as an integer
+* Using left IR sensor
+*
+* @author  Sara Suviranta
+* @since   9-4-2018
+*/
 package pack;
 
 import lejos.hardware.ev3.LocalEV3;
@@ -13,8 +20,11 @@ public class DistanceIR extends Thread {
 	private EV3IRSensor sensor;
 	private boolean stop = false;
 	private int distance;
+
 	
-	/** Constructor: create DistanceIR object */
+	/**
+	 * create DistanceIR object
+	 **/
 	public DistanceIR() {
 		Port port = LocalEV3.get().getPort("S1");
 		sensor = new EV3IRSensor(port);
@@ -25,10 +35,11 @@ public class DistanceIR extends Thread {
 	public synchronized int distance() { 
 		return distance; 
 	}
-	
+	/** stop sensor */
 	public void stopSensor() {
 		stop = true;
 	}
+	
 	/** this runs until stopSensor() is called
 	* mean filtering raw distance data
 	*/ 

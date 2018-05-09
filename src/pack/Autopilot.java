@@ -1,3 +1,10 @@
+/**
+* Autopilot class
+* Robot drives independently and avoids obstacles
+*
+* @author  Sara Suviranta
+* @since   16-4-2018
+*/
 package pack;
 
 import lejos.hardware.lcd.LCD;
@@ -14,7 +21,14 @@ public class Autopilot extends Thread {
 	private int shootCount = 0;
 	private float[] sampleLeft;
 	private float[] sampleRight;
-
+	
+	/**
+	 * create Autopilot object
+	 * @param dr drive object
+	 * @param distance DistanceIR object
+	 * @param touchSensorLeft This is the left touch sensor 
+	 * @param touchSensorRight This is the right touch sensor 
+	 * */
 	public Autopilot(Drive dr, DistanceIR distance, EV3TouchSensor touchSensorLeft, EV3TouchSensor touchSensorRight) {
 		this.dr = dr;
 		this.distance = distance;
@@ -30,8 +44,8 @@ public class Autopilot extends Thread {
 			while (!Button.ESCAPE.isDown()) {
 				LCD.drawString("AUTOPILOT", 0, 0);
 				LCD.drawInt(dr.getRotation(), 0, 1);
-				// LCD.drawString("Distance: " + distance.distance(), 0, 6);
-				// LCD.drawString("Shoot count: " + shootCount, 0, 5);
+				LCD.drawString("Distance: " + distance.distance(), 0, 6);
+				LCD.drawString("Shoot count: " + shootCount, 0, 5);
 				LCD.refresh();
 				Thread.sleep(25);
 				dr.driveForward();
@@ -48,8 +62,7 @@ public class Autopilot extends Thread {
 	}
 
 	/** polls distance sensor for information and shoots or turns around accordingly.
-	* if either touch sensor is pressed back up and turn around
-	*/
+	* if either touch sensor is pressed back up and turn around */
 	private void detectObstacle() {
 		touchSensorLeft.fetchSample(sampleLeft, 0);
 		touchSensorRight.fetchSample(sampleRight, 0);
