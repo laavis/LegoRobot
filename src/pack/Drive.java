@@ -1,3 +1,8 @@
+package pack;
+
+import lejos.robotics.RegulatedMotor;
+import lejos.utility.Delay;
+
 /**
 * Class Drive is responsible for controlling the 3 motors on the robot.
 * Contains methods for most functions that the motors can do.
@@ -5,11 +10,6 @@
 * @author Niklas Kiuru
 * @since 9-4-2018
 */
-package pack;
-
-import lejos.robotics.RegulatedMotor;
-import lejos.utility.Delay;
-
 public class Drive {
 	private RegulatedMotor rightMotor;
 	private RegulatedMotor leftMotor;

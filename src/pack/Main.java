@@ -1,11 +1,3 @@
-/**
-* Main class contains main function.
-* Method is responsible for initializing and handing over to remote control.
-* @author Alex Makinen
-* @since 9-4-2018
-*/
-
-
 package pack;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
@@ -16,6 +8,12 @@ import lejos.hardware.sensor.EV3IRSensor;
 import lejos.robotics.RegulatedMotor;
 import lejos.hardware.sensor.EV3TouchSensor;
 
+/**
+* Main class contains main function.
+* Method is responsible for initializing and handing over to remote control.
+* @author Alex Makinen
+* @since 9-4-2018
+*/
 public class Main {
 
 	public static void main(String[] args) {

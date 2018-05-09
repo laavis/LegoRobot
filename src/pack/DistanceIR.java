@@ -1,10 +1,3 @@
-/**
-* Measures the distance and returns it as an integer
-* Using left IR sensor
-*
-* @author  Sara Suviranta
-* @since   9-4-2018
-*/
 package pack;
 
 import lejos.hardware.ev3.LocalEV3;
@@ -14,6 +7,13 @@ import lejos.robotics.SampleProvider;
 import lejos.robotics.filter.MeanFilter;
 
 
+/**
+* Measures the distance and returns it as an integer
+* Using left IR sensor
+*
+* @author  Sara Suviranta
+* @since   9-4-2018
+*/
 public class DistanceIR extends Thread {
 	private SampleProvider average;
 	private SampleProvider sampler;

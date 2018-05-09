@@ -1,3 +1,9 @@
+package pack;
+
+import lejos.hardware.lcd.LCD;
+import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.hardware.Button;
+
 /**
 * Autopilot class
 * Robot drives independently and avoids obstacles
@@ -5,12 +11,6 @@
 * @author  Sara Suviranta
 * @since   16-4-2018
 */
-package pack;
-
-import lejos.hardware.lcd.LCD;
-import lejos.hardware.sensor.EV3TouchSensor;
-import lejos.hardware.Button;
-
 public class Autopilot extends Thread {
 
 	private Drive dr;

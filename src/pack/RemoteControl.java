@@ -1,10 +1,3 @@
-/**
-* <h1> RemoteControl <h1>
-* This class contains the main loop of the program.
-* Takes two integers from IRChecker and based on those sends commands to other classes.
-* @author  Niklas Kiuru
-* @since   16-4-2018 
-*/
 package pack;
 
 import lejos.hardware.Button;
@@ -12,7 +5,13 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.utility.Delay;
-
+/**
+* <h1> RemoteControl <h1>
+* This class contains the main loop of the program.
+* Takes two integers from IRChecker and based on those sends commands to other classes.
+* @author  Niklas Kiuru
+* @since   16-4-2018 
+*/
 public class RemoteControl {
 	private EV3IRSensor irSensorLeft;
 	private IRChecker checkerThread;

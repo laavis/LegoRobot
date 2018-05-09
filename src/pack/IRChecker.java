@@ -1,16 +1,15 @@
-/**
-* Class IRChecker keeps track of the channel and is responsible for channel switching and command receivement.
-* Contains methods for command getting and channel changing.
-* @author Alex Makinen
-* @since 9-4-2018
-*/
-
 package pack;
 
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.sensor.EV3IRSensor;
 import lejos.utility.Delay;
 
+/**
+* Class IRChecker keeps track of the channel and is responsible for channel switching and command receivement.
+* Contains methods for command getting and channel changing.
+* @author Alex Makinen
+* @since 9-4-2018
+*/
 public class IRChecker extends Thread {
 	private EV3IRSensor infraredSensorLeft;
 	private int remoteCommand;
