@@ -1,3 +1,10 @@
+/**
+* Class IRChecker keeps track of the channel and is responsible for channel switching and command receivement.
+* Contains methods for command getting and channel changing.
+* @author Alex Mäkinen
+* @since 9-4-2018
+*/
+
 package pack;
 
 import lejos.hardware.lcd.LCD;

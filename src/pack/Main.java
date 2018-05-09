@@ -1,3 +1,11 @@
+/**
+* Main class contains main function.
+* Method is responsible for initializing and handing over to remote control.
+* @author Alex Mäkinen
+* @since 9-4-2018
+*/
+
+
 package pack;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
@@ -22,9 +30,14 @@ public class Main {
 		IRChecker checkerThread = new IRChecker(irSensorLeft);
 		DistanceIR distance = new DistanceIR();
 		Autopilot tesla = new Autopilot(dr, distance, touchSensorLeft, touchSensorRight);
-
+		/** Initializes channel */
 		checkerThread.changeChannel(); // Initializes channel
-
+		/** Executes handover to RemoteControl
+		 * @param irSensorLeft this is the left IR sensor
+		 * @param checkerThread this is the IRChecker thread
+		 * @param dr this is the Drive thread
+		 * @param distance this is the distance to obstacles from DistanceIR
+		 * @param tesla this is the Autopilot class*/
 		RemoteControl rC = new RemoteControl(irSensorLeft, checkerThread, dr, distance, tesla);
 		rC.Control(); // Starts contol
 
