@@ -1,3 +1,11 @@
+/**
+* Class MusicThread is responsible for playing music.
+* Contains methods that enable music to be played.
+* This class is a thread and runs independently from the main program.
+* Values for the PIANO variable and the matching frequencies for the notes were taken from the Internet 
+* @author Miikka Oksanen
+* @since 9-4-2018
+*/
 package pack;
 
 import lejos.hardware.Button;
